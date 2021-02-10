@@ -16,6 +16,7 @@ jobs:
     defaults:
       run:
         shell: bash
+        working-directory: ./terraform_configurations/mainbucket/
         
     steps:
     - name: Checkout
