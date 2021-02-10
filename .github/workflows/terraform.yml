@@ -12,12 +12,15 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-latest
 
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:
         shell: bash
         working-directory: ./terraform_configurations/mainbucket/
-        
+
     steps:
     - name: Checkout
       uses: actions/checkout@v2
