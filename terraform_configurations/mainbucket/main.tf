@@ -38,6 +38,6 @@ module "bucket" {
   versioning = true
   iam_members = [{
     role   = "roles/storage.admin"
-    member = "serviceAccount:${google_service_account.teraas_service_account.email}"
+    member = var.service_account_storage_admin
   }]
 }

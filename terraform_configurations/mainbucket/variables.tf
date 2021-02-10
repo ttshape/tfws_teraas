@@ -19,4 +19,10 @@ variable "service_account_members" {
 }
 
 
+variable "service_account_storage_admin" {
+  type = string
+  default="serviceAccount:teraas@adeo-terraform.iam.gserviceaccount.com"
+}
+
+
 
