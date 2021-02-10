@@ -12,7 +12,7 @@ on:
 jobs:
   terraform:
     name: 'Terraform'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     env:
       GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
@@ -32,6 +32,6 @@ jobs:
         terraform_version: ${{ github.events.inputs.terraformVersion }}
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, version.
     - name: Terraform init
-      run: terraform init
+      run: terraform init -backend-config=backend.config
     - name: Terraform plan
       run: terraform plan

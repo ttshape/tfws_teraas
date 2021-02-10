@@ -1,8 +1,3 @@
-provider "google" {
- project     = var.project
- region      = var.region
-}
-
 
 resource "google_service_account" "teraas_service_account" {
   account_id   = "teraas"
