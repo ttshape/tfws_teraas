@@ -2,10 +2,12 @@
 name: 'Terraform'
 
 on:
-  push:
-    branches:
-    - main
-  pull_request:
+  workflow_dispatch:
+    inputs:
+      terraformVersion:
+        description: 'Terraform version'
+        required: true
+        default: '0.14.6'
 
 jobs:
   terraform:
@@ -27,7 +29,7 @@ jobs:
     - name: Install Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 0.14.6
+        terraform_version: ${{ github.events.inputs.terraformVersion }}
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, version.
     - name: Terraform plan
       run: |
