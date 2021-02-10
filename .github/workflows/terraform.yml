@@ -31,7 +31,7 @@ jobs:
       with:
         terraform_version: ${{ github.events.inputs.terraformVersion }}
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, version.
+    - name: Terraform init
+      run: terraform init
     - name: Terraform plan
-      run: |
-        terraform init
-        terraform plan
+      run: terraform plan
