@@ -15,7 +15,7 @@ on:
 jobs:
   terraform:
     name: 'Terraform'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: TEST
@@ -26,6 +26,7 @@ jobs:
         run: echo "$GITHUB_CONTEXT"
       - name: Dump GitHub context2
         run: echo "${{ toJSON(github.event.inputs) }}"
-        
+       - name: Dump GitHub context3
+        run: echo "${{ toJSON(github.event.inputs) }}" | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""'      
       
       
