@@ -19,6 +19,9 @@ jobs:
     defaults:
       run:
         working-directory: ./terraform_configurations/backendsBuckets/
+      
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
     steps:
     - name: Checkout
