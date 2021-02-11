@@ -18,7 +18,7 @@ variable "serviceAccount" {
   description = "This service account will have the storage.admin role on the bucket that will be created to host the remote state"
 }
 
-variable "bucketName" {
+variable "workspaceName" {
   type = string
   description = "Name of the bucket that will be created to store the remote state"
 }
