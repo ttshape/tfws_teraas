@@ -31,6 +31,8 @@ jobs:
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: "0.14.6"
+    - name: Dump GitHub context2
+      run: echo "${{ toJSON(github.event.inputs) }}"
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, version.
     - name: Convert variables to file 
       run: echo '${{ toJSON(github.event.inputs) }}' | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""' > variables.tfvars      
