@@ -1,0 +1,33 @@
+
+name: 'Test'
+
+on:
+  workflow_dispatch:
+    inputs:
+      terraformVersion:
+        description: 'Terraform version'
+        required: true
+        default: '0.14.6'
+      directory:
+        description: 'a dir'
+        required: false
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-20.04
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./terraform_configurations/mainbucket/
+
+    steps:
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github.event.inputs) }}
+        run: echo "$GITHUB_CONTEXT"
+        
+      
+      
