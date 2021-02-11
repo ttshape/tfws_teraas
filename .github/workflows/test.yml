@@ -27,7 +27,11 @@ jobs:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github.event.inputs) }}
-        run: echo "$GITHUB_CONTEXT"
+        run: 
+          echo "$GITHUB_CONTEXT"
+      - name: Dump GitHub context2
+        run: 
+          echo "${{ toJSON(github.event.inputs) }}"
         
       
       
