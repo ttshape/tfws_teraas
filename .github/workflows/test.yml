@@ -17,17 +17,14 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-20.04
 
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
     steps:
       - name: TEST
         run: echo "TEST"
       - name: Convert variables to file 
         run: echo '${{ toJSON(github.event.inputs) }}' | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""' > variables.tfvars          
-      - name: Dump GitHub context
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
-      - name: Dump GitHub context2
-        run: echo "${{ toJSON(github.event.inputs) }}"
       - name: Dump GitHub context3
         run: echo '${{ toJSON(github.event.inputs) }}' | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""'      
       
