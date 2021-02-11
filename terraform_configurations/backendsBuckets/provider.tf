@@ -8,6 +8,7 @@ provider "google" {
 #run terraform init -backend-config="prefix=DIRECTORY_FOR_BACKEND"
 #https://www.terraform.io/docs/language/settings/backends/configuration.html#partial-configuration
 terraform {
-  backend "gcs" {}
-  bucket  = "terraform-backends-bucket"
+  backend "gcs" {
+   bucket  = "terraform-backends-bucket"
+   }
 }
