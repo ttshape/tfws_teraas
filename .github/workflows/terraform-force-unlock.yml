@@ -33,4 +33,4 @@ jobs:
     - name: Terraform init
       run: terraform init -backend-config="prefix=${{ github.event.inputs.workspace_name }}"
     - name: Terraform force-unlock
-      run: terraform force-unlock ${{ github.event.inputs.lock_id }}"
+      run: terraform force-unlock ${{ github.event.inputs.lock_id }}
