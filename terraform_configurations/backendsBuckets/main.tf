@@ -2,7 +2,7 @@ module "bucket" {
   source  = "terraform-google-modules/cloud-storage/google//modules/simple_bucket"
    version = "1.7.2"
 
-  name       = var.bucketName
+  name       = "teraas-${var.workspaceName}"
   project_id = var.project
   location   = var.location
   versioning = true
