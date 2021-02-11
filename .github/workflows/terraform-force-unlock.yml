@@ -7,7 +7,7 @@ on:
         description: 'lockid'
         required: true
       workspace_name:
-        required: true
+        required: false
 
 jobs:
   terraform:
