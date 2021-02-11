@@ -1,0 +1,42 @@
+name: 'Terraform Backend bucket'
+
+on:
+  workflow_dispatch:
+    inputs:
+      serviceAccount:
+        description: 'Service account that will be used to run terraform commands and access state backend'
+        required: true
+      workspaceName:
+        description: 'The workspace name must be unique. It is used as the key to store the terraform workspace remote state'
+        required: true
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-20.04
+
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ./terraform_configurations/backendsBucket/
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: "0.14.6"
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, version.
+    - name: Convert variables to file 
+      run: echo '${{ toJSON(github.event.inputs) }}' | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""' > variables.tfvars      
+    - name: Terraform init
+      run: terraform init -backend-config="prefix=${{ github.events.inputs.workspaceName }}"
+    - name: Terraform plan
+      run: terraform plan -var-file=variables.tfvars
+    - name: Terraform apply
+      run: terraform apply -var-file=variables.tfvars
