@@ -15,13 +15,7 @@ on:
 jobs:
   terraform:
     name: 'Terraform'
-    runs-on: ubuntu-20.04
-
-    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
-    defaults:
-      run:
-        shell: bash
-        working-directory: ./terraform_configurations/mainbucket/
+    runs-on: ubuntu-latest
 
     steps:
       - name: TEST
