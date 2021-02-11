@@ -26,6 +26,8 @@ jobs:
 #      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: TEST
         run: pwd && echo "TEST"
 #      - name: Convert variables to file 
