@@ -17,6 +17,10 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-20.04
 
+    defaults:
+      run:
+        working-directory: ./terraform_configurations/backendsBucket/
+        
     env:
       GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
