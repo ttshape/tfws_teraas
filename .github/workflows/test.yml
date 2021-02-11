@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: TEST
         run: echo "TEST"
+      - name: Convert variables to file 
+        run: echo '${{ toJSON(github.event.inputs) }}' | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""' > variables.tfvars          
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
