@@ -27,6 +27,6 @@ jobs:
       - name: Dump GitHub context2
         run: echo "${{ toJSON(github.event.inputs) }}"
       - name: Dump GitHub context3
-        run: echo "${{ toJSON(github.event.inputs) }}" | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""'      
+        run: echo '${{ toJSON(github.event.inputs) }}' | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""'      
       
       
