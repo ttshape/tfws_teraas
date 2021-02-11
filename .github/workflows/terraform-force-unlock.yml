@@ -30,9 +30,7 @@ jobs:
       with:
         terraform_version: "0.14.6"
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, version.
-    - name: test1
-      run: echo "W:${{ github.events.inputs.workspace_name }}"
     - name: Terraform init
-      run: terraform init -backend-config="prefix=${{ github.events.inputs.workspace_name }}"
+      run: terraform init -backend-config="prefix=${{ github.event.inputs.workspace_name }}"
     - name: Terraform force-unlock
-      run: terraform force-unlock ${{ github.events.inputs.lock_id }}"
+      run: terraform force-unlock ${{ github.event.inputs.lock_id }}"
