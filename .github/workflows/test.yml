@@ -19,8 +19,8 @@ jobs:
 
     defaults:
       run:
-        shell: /usr/bin/bash -e {0}        
-        working-directory: ${{ github.workspace }}/terraform_configurations/backendsBuckets
+        shell: bash        
+        working-directory: ./terraform_configurations/backendsBuckets/
                                                    
 #    env:
 #      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
