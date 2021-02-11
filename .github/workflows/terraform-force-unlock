@@ -1,0 +1,38 @@
+name: 'Terraform force unlock bucket'
+
+on:
+  workflow_dispatch:
+    inputs:
+      lock_id:
+        description: 'lockid'
+        required: true
+      workspace_name:
+        required: true
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    runs-on: ubuntu-20.04
+
+    # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
+    defaults:
+      run:
+        working-directory: ./terraform_configurations/backendsBuckets/
+      
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Install Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: "0.14.6"
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, version.
+    - name: test1
+      run: echo "W:${{ github.events.inputs.workspace_name }}"
+    - name: Terraform init
+      run: terraform init -backend-config="prefix=${{ github.events.inputs.workspace_name }}"
+    - name: Terraform force-unlock
+      run: terraform force-unlock ${{ github.events.inputs.lock_id }}"
