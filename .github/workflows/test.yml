@@ -17,10 +17,7 @@ jobs:
     name: 'Terraform'
     runs-on: ubuntu-20.04
 
-    defaults:
-      run:
-        working-directory: ./terraform_configurations/backendsBuckets/
-                                                   
+                                                  
 #    env:
 #      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
 
@@ -29,9 +26,9 @@ jobs:
         uses: actions/checkout@v2
       - name: TEST
         run: pwd && echo "TEST"
-#      - name: Convert variables to file 
-#        run: echo '${{ toJSON(github.event.inputs) }}' | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""' > variables.tfvars          
-#      - name: Dump GitHub context3
-#        run: echo '${{ toJSON(github.event.inputs) }}' | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""'      
+      - name: Convert variables to file 
+        run: echo '${{ toJSON(github.event.inputs) }}' | jq -r 'to_entries[]|"\(.key)=\"\(.value)\""' > variables.tfvars          
+      - name: Dump GitHub context3
+        run: cat variables.tfvars      
       
       
